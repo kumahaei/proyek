@@ -91,6 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem("username", username);
 
     // Arahkan ke main page
-    window.location.href = MAIN_PAGE_URL;
+    window.location.href = https://imcoolfer-tech.github.io/main-pages/;
   });
 });
