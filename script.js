@@ -66,3 +66,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const signInBtn = document.getElementById('signInBtn');
+  const usernameInput = document.getElementById('username');
+  const passwordInput = document.getElementById('password');
+
+  // Ganti ini dengan URL GitHub Pages dari MAIN PAGE-mu
+  const MAIN_PAGE_URL = "https://imcoolfer-tech.github.io/main-pages/";
+
+  // Tombol Login
+  signInBtn.addEventListener('click', () => {
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    // Validasi sederhana (bisa kamu ganti dengan sistem register kamu)
+    if (username === "" || password === "") {
+      alert("Isi username dan password terlebih dahulu!");
+      return;
+    }
+
+    // Simpan status login ke localStorage
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("username", username);
+
+    // Arahkan ke main page
+    window.location.href = MAIN_PAGE_URL;
+  });
+});
