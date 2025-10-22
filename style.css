@@ -1,27 +1,95 @@
-/* === kode CSS asli kamu tetap di sini === */
+/* Font dan dasar tampilan */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-/* Tambahan fix overlay & font */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Kontainer utama */
+.container {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+  width: 850px;
+  max-width: 100%;
+  min-height: 500px;
+}
+
+/* Form */
+form {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  border-radius: 20px;
+  border: none;
+  background-color: #6a11cb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2575fc;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Panel dan transisi */
 .form-container {
   position: absolute;
   top: 0;
   height: 100%;
-  width: 50%;
   transition: all 0.6s ease-in-out;
 }
 
-/* sign-in left, sign-up right (default show sign-in) */
 .sign-in-container {
   left: 0;
+  width: 50%;
   z-index: 2;
 }
 
 .sign-up-container {
   left: 0;
+  width: 50%;
   opacity: 0;
   z-index: 1;
 }
 
-/* When active, shift forms */
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
@@ -32,7 +100,7 @@
   z-index: 5;
 }
 
-/* overlay container (uses 200% width trick) */
+/* Overlay */
 .overlay-container {
   position: absolute;
   top: 0;
@@ -48,55 +116,56 @@
   transform: translateX(-100%);
 }
 
-/* overlay element spans 200% and is initially shifted left */
 .overlay {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
   position: relative;
   left: -100%;
-  width: 200%;
   height: 100%;
-  background: linear-gradient(135deg, #2575fc, #6a11cb);
-  color: #fff;
+  width: 200%;
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
-  box-shadow: 0 0 25px rgba(106,17,203,0.25);
-  border-radius: 40px;
 }
 
-/* critical: when active, overlay must translate 100% (not 50%) */
 .container.right-panel-active .overlay {
-  transform: translateX(100%);
+  transform: translateX(50%);
 }
 
-/* overlay panels inside overlay */
 .overlay-panel {
   position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
   transition: transform 0.6s ease-in-out;
 }
 
-.overlay-left { left: 0; transform: translateX(-20%); }
-.container.right-panel-active .overlay-left { transform: translateX(0); }
-
-.overlay-right { right: 0; transform: translateX(0); }
-.container.right-panel-active .overlay-right { transform: translateX(20%); }
-
-/* Fix untuk placeholder / teks miring */
-input::placeholder, h1, p, button, a {
-  font-style: normal;
-}
-input {
-  font-style: normal;
+.overlay-left {
+  transform: translateX(-20%);
 }
 
-/* Responsif */
-@media (max-width: 768px) {
-  .sign-in-container, .sign-up-container, .overlay-container { width: 100%; left: 0; }
-  .overlay { display: none; }
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+/* Tombol ghost (transparan) */
+button.ghost {
+  background-color: transparent;
+  border: 2px solid #fff;
 }
